@@ -22,6 +22,7 @@ android
 *.properties
 seed.txt
 map.txt
+dist/
 
 #ignore output folder
 www

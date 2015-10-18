@@ -60,7 +60,7 @@ gulp.task('desktop', function() {
 gulp.task('deliver', serve('dist'));
 
 gulp.task('serve', function(){  
-  runSequence('deliver', 'watch');
+  runSequence('rebuildDist', 'deliver', 'watch');
 });
 
 gulp.task('sass', function (done) {
@@ -73,6 +73,10 @@ gulp.task('sass', function (done) {
         .pipe(rename({extname: '.min.css'}))
         .pipe(gulp.dest('./www/css/'))
         .on('end', done);
+});
+
+gulp.task('rebuildDist', function(){
+  runSequence('sass', 'scripts', 'desktopScripts', 'desktop');
 });
 
 gulp.task('watch', function () {
