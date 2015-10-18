@@ -1,11 +1,16 @@
 export class AppCtrl {
-    constructor($scope, SchedulerService, $q, GeoLocation) {
+    constructor($scope, SchedulerService, $q, GeoLocation, dropOffZones) {
         this.$q = $q;
         this.loadingSchedule = false;
         this.schedulerService = SchedulerService;
         this.geoLocation = GeoLocation;
+        this.dropOffZones = dropOffZones.getFacilities();
+        this.blah = 'yolo';       
+         
     }
-
+    
+  
+    
     queryAddress(address) {
         if(address == "") {
             this.events = null; //clear out data

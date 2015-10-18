@@ -277,6 +277,7 @@
     </style>
 </head>
 <body ng-controller="AppCtrl as app" >
+  
 <header layout-align="center center" flex layout="column" ng-class="{small: app.events}">
     <div class="logo" ng-click="app.selectAddress(null)"></div>
     <md-autocomplete
@@ -288,7 +289,15 @@
         <span md-highlight-text="searchText">{{item.text}}</span>
     </md-autocomplete>
 </header>
-<md-content ng-cloak class="content" layout="column" layout-align="center center">
+<map center="29.754002, -95.373774" zoom="9" style="width: 30%; height: 30%; margin: 0 auto" disable-default-u-i="true">  
+  <marker ng-repeat="zone in app.dropOffZones" 
+          position="{{zone.coordinates.latitude}},{{zone.coordinates.longitude}}"
+          icon="{{( zone.name === 'CompuCycle' ? 'img/compucycle.png' : '' ) || (zone.type === 'Recycling Facility' ? 'img/environmentfacility.png' : 'img/neighborhoodfacility.png')}}"
+          on-click="app.clickedLocation()">
+  </marker>
+</map>
+<md-content ng-cloak class="content" layout="column" layout-align="center center">    
+    
     <div class="splash" ng-if="app.events == null" layout="row" layout-align="center center">
         <h1 flex="33" flex-sm="0">Hi!</h1>
         <div class="welcome-message" flex="66" flex-sm="100">
@@ -297,8 +306,7 @@
             <i>Enter your address above to get started</i>!
             <br>
             <h2>On Your Phone? Get the App!</h2>
-            <md-button class="app md-raised" href="https://itunes.apple.com/us/app/rollout!-houston/id1011036124?mt=8">Apple iPhone </md-button>
-            <md-button class="app md-raised" href="https://play.google.com/store/apps/details?id=com.kentonue.rollout">Android </md-button>
+            <md-button class="app md-raised" href="https://itunes.apple.com/us/app/rollout!-houston/id1011036124?mt=8">Apple iPhone </md-button>        
         </div>
     </div>
 
@@ -345,6 +353,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.1/angular-material.min.js"></script>
+<script src="http://maps.google.com/maps/api/js"></script>
+<script src="lib/ngmap/build/scripts/ng-map.js"></script>
 <script src="js/all.js"></script>
 </body>
 

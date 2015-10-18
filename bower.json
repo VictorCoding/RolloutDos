@@ -14,7 +14,8 @@
     "lodash": "~3.9.2",
     "angular-local-storage": "~0.2.2",
     "angular-material": "~0.10.0",
-    "ionic": "~1.0.1"
+    "ionic": "~1.0.1",
+    "ngmap": "~1.13.13"
   },
   "resolutions": {
     "angular": "1.4.2"

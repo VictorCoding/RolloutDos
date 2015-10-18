@@ -9,7 +9,7 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var serve = require('gulp-serve');
-
+var runSequence = require('run-sequence');
 
 var paths = {
     sass: ['./scss/**/*.scss'],
@@ -57,7 +57,11 @@ gulp.task('desktop', function() {
         .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('serve', serve('dist'));
+gulp.task('deliver', serve('dist'));
+
+gulp.task('serve', function(){  
+  runSequence('deliver', 'watch');
+});
 
 gulp.task('sass', function (done) {
     gulp.src('./scss/**.scss')

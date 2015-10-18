@@ -1,8 +1,9 @@
 import {AppCtrl} from 'AppCtrl';
 import {Scheduler} from 'Scheduler';
 import {GeoLocation} from 'GeoLocation';
-
-angular.module('StarterApp', ['ngMaterial']).config(function ($mdThemingProvider) {
+import {dropOffZones} from 'dropOffZones';
+angular.module('StarterApp', ['ngMaterial', 'ngMap']).config(function ($mdThemingProvider) {
+    
     $mdThemingProvider.definePalette('rollout', {
         "50": "#ebf8f0",
         "100": "#c4ebd2",
@@ -24,5 +25,6 @@ angular.module('StarterApp', ['ngMaterial']).config(function ($mdThemingProvider
 }).controller("AppCtrl", AppCtrl)
     .service("SchedulerService", Scheduler.service)
     .service("GeoLocation", GeoLocation)
+    .service("dropOffZones", dropOffZones)
     .filter('date', () => AppCtrl.dateFilter)
     .filter('dayOfWeek', () => AppCtrl.dayOfWeek);
