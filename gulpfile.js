@@ -60,7 +60,7 @@ gulp.task('desktop', function() {
 gulp.task('deliver', serve('dist'));
 
 gulp.task('serve', function(){  
-  runSequence('rebuildDist', 'deliver', 'watch');
+  runSequence('deliver', 'watch');
 });
 
 gulp.task('sass', function (done) {
