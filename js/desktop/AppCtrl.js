@@ -5,8 +5,6 @@ export class AppCtrl {
         this.schedulerService = SchedulerService;
         this.geoLocation = GeoLocation;
         this.dropOffZones = dropOffZones.getFacilities();
-        this.blah = 'yolo';       
-         
     }
     
   
