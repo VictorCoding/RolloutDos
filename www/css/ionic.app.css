@@ -7727,22 +7727,7 @@ a.button {
 
 .action-buttons {
   height: 48px;
-  background-color: #6dd131;
-  /* disabling drop-off
-  .reminders, .drop-off {
-    margin-top: 8px;
-    font-family: aleoregular;
-    vertical-align: top;
-    float: left;
-    width: 50%;
-    font-size: 1.1em;
-    i {
-      margin-top: 8px;
-      margin-right: 10px;
-      margin-left: 10px;
-      font-size: 1.3em;
-    }
-  }*/ }
+  background-color: #6dd131; }
   .action-buttons .reminders {
     margin-left: auto;
     margin-right: auto;
@@ -7754,6 +7739,18 @@ a.button {
       margin-right: 10px;
       margin-left: 10px;
       font-size: 1em; }
+  .action-buttons .reminders, .action-buttons .drop-off {
+    margin-top: 8px;
+    font-family: aleoregular;
+    vertical-align: top;
+    float: left;
+    width: 50%;
+    font-size: 1.1em; }
+    .action-buttons .reminders i, .action-buttons .drop-off i {
+      margin-top: 8px;
+      margin-right: 10px;
+      margin-left: 10px;
+      font-size: 1.3em; }
 
 .home .no-schedule {
   text-align: center;
@@ -7887,7 +7884,3 @@ a.button {
   height: auto;
   overflow: visible;
   opacity: 1; }
-
-.platform-android .filter-bar .filter-bar-positive .item-input-wrapper {
-  background-color: transparent !important;
-  border-bottom-color: white !important; }

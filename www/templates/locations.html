@@ -2,19 +2,69 @@
     <ion-nav-title>
         <img src="img/rollout_logo.png" style="margin-top:5px;" height="30" width="143">
     </ion-nav-title>
-
-    <ion-content>
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon icon ion-ios-location-outline" ng-click="l.getCurrentCoords()"></button>
+    </ion-nav-buttons>
+    <ion-content scroll="false">
         <div><label class="item item-input item-select">
             <div class="input-label">
                 Type
             </div>
-            <select ng-model="mapType" ng-options="item.code as item.name for item in types"></select>
+            <select ng-model="l.mapType" 
+                    ng-options="item.name for item in l.types track by item.code"
+                    ng-change="l.updateMap(mapType.code)">
+            </select>
 
         </label>
         </div>
-        <iframe  width="100%" height="600px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                ng-src="{{maps[mapType]}}">
-        </iframe>
+        <div class="map-container">
+          <map center="29.754002, -95.373774" zoom="10" style="margin: 0 auto" disable-default-u-i="true">  
+            <marker ng-repeat="zone in l.zones" 
+                    position="{{zone.coordinates.latitude}},{{zone.coordinates.longitude}}"
+                    icon="{{( zone.name === 'CompuCycle' ? 'img/compucycle.png' : '' ) || (zone.type === 'Recycling Facility' ? 'img/environmentfacility.png' : 'img/neighborhoodfacility.png')}}"
+                    on-click="app.clickedLocation()">
+            </marker>
+          </map>
+          
+        </div>
+        <div class="list" style="overflow: auto; height: 272px; overflow-x: hidden;">
+          <div ng-if="l.mapType.code === 'all' || l.mapType.code === 'one'">
+            <div class="item item-divider item-balanced">
+              Recycling Facilities
+            </div>
+            <div class="item" href="#" ng-repeat="zone in l.zones track by $index" ng-if="zone.type === 'Recycling Facility'">
+              {{zone.name}}<br>
+              <small>{{zone.distance}}</small>
+            </div> 
+          </div>     
+          <div ng-if="l.mapType.code === 'all' || l.mapType.code === 'two'"> 
+            <div class="item item-divider item-balanced">
+              Environmental Service Center              
+            </div>
+            <div class="item" href="#" ng-repeat="zone in l.zones track by $index" ng-if="zone.type === 'Environmental Service Center'">
+              {{zone.name}}<br>
+              <small>{{zone.distance}}</small>
+            </div>     
+          </div>
+          <div ng-if="l.mapType.code === 'all' || l.mapType.code === 'three'">
+            <div class="item item-divider item-balanced">
+              Neighborhood Facility
+            </div>
+            <div class="item" href="#" ng-repeat="zone in l.zones track by $index" ng-if="zone.type === 'Neighborhood Facility'">
+              {{zone.name}}<br>
+              <small>{{zone.distance}}</small>
+            </div>      
+          </div>       
+          <div ng-if="l.mapType.code === 'all' || l.mapType.code === 'four'">
+            <div class="item item-divider item-balanced">
+              Non City-Owned Facilities
+            </div>
+            <div class="item" href="#" ng-repeat="zone in l.zones track by $index" ng-if="zone.type === 'Non City-Owned Facilities'">
+              {{zone.name}}<br>
+              <small>{{zone.distance}}</small>
+            </div>
+          </div>   
+        </div>
 
 
     </ion-content>

@@ -7,9 +7,10 @@ import {HomeCtrl} from 'HomeCtrl';
 import {RemindMeCtrl} from 'RemindMeCtrl';
 import {Scheduler} from 'Scheduler'
 import {GeoLocation} from 'GeoLocation'
+import {dropOffZones} from 'dropOffZones';
 
 angular.module('starter', ['ionic', 'ionic.service.core',
-    'starter.controllers', 'starter.services'])
+    'starter.controllers', 'starter.services', 'ngMap'])
     /*
     //need to add 'ionic.service.deploy' back on
     .config(['$ionicAppProvider', function($ionicAppProvider) {
@@ -37,4 +38,5 @@ angular.module('starter.controllers', ['LocalStorageModule', 'jett.ionic.filter.
 angular.module('starter.services', [])
     .service('GeoLocation', GeoLocation)
     .service('SchedulerService', Scheduler.service)
-    .service('alert', () => (str)=>navigator.notification && navigator.notification.alert ? navigator.notification.alert(str) : window.alert(str));
+    .service('alert', () => (str)=>navigator.notification && navigator.notification.alert ? navigator.notification.alert(str) : window.alert(str))
+    .service("dropOffZones", dropOffZones);

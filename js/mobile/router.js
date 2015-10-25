@@ -16,7 +16,7 @@ export function router($stateProvider, $urlRouterProvider) {
         .state('locations', {
             url: '/locations',
             templateUrl: 'templates/locations.html',
-            controller: 'LocationsCtrl'
+            controller: 'LocationsCtrl as location'
         });
 
 
