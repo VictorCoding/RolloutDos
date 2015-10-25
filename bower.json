@@ -16,7 +16,8 @@
     "angular-material": "~0.10.0",
     "ionic": "~1.0.1",
     "ngmap": "~1.13.13",
-    "ionic-filter-bar": "~1.1.1"
+    "ionic-filter-bar": "~1.1.1",
+    "ngCordova": "~0.1.20-alpha"
   },
   "resolutions": {
     "angular": "1.4.2"

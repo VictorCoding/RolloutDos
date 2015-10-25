@@ -4,6 +4,8 @@ export class LocationsCtrl {
       this.dropOffZones = dropOffZones;
       this.$ionicLoading = $ionicLoading;
       this.zones = this.dropOffZones.getFacilities();      
+      this.mapZoom = 10;
+      this.mapCenter = [29.754002, -95.373774];
       this.types = [
         {
           code: 'all',
@@ -85,5 +87,22 @@ export class LocationsCtrl {
       var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
       var d = R * c; // Distance in km
       return d;
-    }    
+    }  
+    
+    launchNavigation(zone){
+      launchnavigator.navigate(
+            [zone.coordinates.latitude, zone.coordinates.longitude],
+            [this.coordinates.latitude, this.coordinates.longitude],
+            function(){
+                console.log('nav plugin success');
+            },
+            function(error){
+                console.log('nav plugin error: ', error);
+          });
+    }  
+    
+    zoomToLocation(coords){      
+      this.mapZoom = 12;
+      this.mapCenter = [coords.latitude, coords.longitude];
+    }
 }

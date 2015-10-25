@@ -17,13 +17,12 @@
         </label>
         </div>
         <div class="map-container">
-          <map center="29.754002, -95.373774" zoom="10" style="margin: 0 auto" disable-default-u-i="true">  
+          <map center="{{location.mapCenter}}" zoom="{{location.mapZoom}}" style="margin: 0 auto" disable-default-u-i="true">  
             <marker position="{{location.coordinates.latitude}}, {{location.coordinates.longitude}}">
             </marker>
             <marker ng-repeat="zone in location.zones" 
                     position="{{zone.coordinates.latitude}},{{zone.coordinates.longitude}}"
-                    icon="{{( zone.name === 'CompuCycle' ? 'img/compucycle.png' : '' ) || (zone.type === 'Recycling Facility' ? 'img/environmentfacility.png' : 'img/neighborhoodfacility.png')}}"
-                    on-click="app.clickedLocation()">
+                    icon="{{( zone.name === 'CompuCycle' ? 'img/compucycle.png' : '' ) || (zone.type === 'Recycling Facility' ? 'img/environmentfacility.png' : 'img/neighborhoodfacility.png')}}">
             </marker>
           </map>
           
@@ -33,7 +32,14 @@
             <div class="item item-divider item-balanced">
               Recycling Facilities
             </div>
-            <div class="item" href="#" ng-repeat="zone in location.zones track by $index" ng-if="zone.type === 'Recycling Facility'">
+            <div class="item item-button-right" 
+                 href="#" 
+                 ng-repeat="zone in location.zones track by $index" 
+                 ng-if="zone.type === 'Recycling Facility'" 
+                 ng-click="location.zoomToLocation(zone.coordinates)">
+                <button class="button button-stable" type="button" ng-click="location.launchNavigation(zone)">
+                  <i class="icon ion-ios-navigate-outline"></i>
+                </button>
               {{zone.name}}<br>
               <small>{{zone.distance}} mi.</small>
             </div> 
@@ -42,7 +48,14 @@
             <div class="item item-divider item-balanced">
               Environmental Service Center              
             </div>
-            <div class="item" href="#" ng-repeat="zone in location.zones track by $index" ng-if="zone.type === 'Environmental Service Center'">
+            <div class="item item-button-right" 
+                 href="#" 
+                 ng-repeat="zone in location.zones track by $index" 
+                 ng-if="zone.type === 'Environmental Service Center'"
+                 ng-click="location.zoomToLocation(zone.coordinates)">
+              <button class="button button-stable" type="button" ng-click="location.launchNavigation(zone)">
+                <i class="icon ion-ios-navigate-outline"></i>
+              </button>
               {{zone.name}}<br>
               <small>{{zone.distance}} mi.</small>
             </div>     
@@ -51,7 +64,14 @@
             <div class="item item-divider item-balanced">
               Neighborhood Facility
             </div>
-            <div class="item" href="#" ng-repeat="zone in location.zones track by $index" ng-if="zone.type === 'Neighborhood Facility'">
+            <div class="item item-button-right" 
+                 href="#" 
+                 ng-repeat="zone in location.zones track by $index" 
+                 ng-if="zone.type === 'Neighborhood Facility'"
+                 ng-click="location.zoomToLocation(zone.coordinates)">
+              <button class="button button-stable" type="button" ng-click="location.launchNavigation(zone)">
+                <i class="icon ion-ios-navigate-outline"></i>
+              </button>
               {{zone.name}}<br>
               <small>{{zone.distance}} mi.</small>
             </div>      
@@ -60,7 +80,14 @@
             <div class="item item-divider item-balanced">
               Non City-Owned Facilities
             </div>
-            <div class="item" href="#" ng-repeat="zone in location.zones track by $index" ng-if="zone.type === 'Non City-Owned Facilities'">
+            <div class="item item-button-right" 
+                 href="#" 
+                 ng-repeat="zone in location.zones track by $index" 
+                 ng-if="zone.type === 'Non City-Owned Facilities'"
+                 ng-click="location.zoomToLocation(zone.coordinates)">
+              <button class="button button-stable" type="button" ng-click="location.launchNavigation(zone)">
+                <i class="icon ion-ios-navigate-outline"></i>
+              </button>
               {{zone.name}}<br>
               <small>{{zone.distance}} mi.</small>
             </div>
