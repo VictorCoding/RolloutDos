@@ -1,5 +1,6 @@
 export class LocationsCtrl {
-    constructor($scope, dropOffZones, $ionicLoading) {
+    constructor($scope, dropOffZones, $ionicLoading, GeoLocation) {      
+      this.coordinates = GeoLocation.getCoordinates();      
       this.dropOffZones = dropOffZones;
       this.$ionicLoading = $ionicLoading;
       this.zones = this.dropOffZones.getFacilities();      
@@ -26,25 +27,20 @@ export class LocationsCtrl {
         }
       ];
       
-      this.mapType = this.types[0];      
-    }
-    
-    updateMap(code){
-      console.log(this.mapType);
-      if(this.mapType.code === 'all') {
-        this.zones = this.dropOffZones.getFacilities();         
+      this.mapType = this.types[0];
+      
+      if(this.coordinates !== 'No coordinates')  {
+        this.getCurrentCoords(true);  
       } else {
-        this.zones = _.filter(this.dropOffZones.getFacilities(), (zone) => {
-          return zone.type === this.mapType.name;
-        });
-      }      
-    }
+        this.getCurrentCoords(false);
+      }
+    }                
     
     checkDistanceFromZones(pos){                
       this.zones = _.map(this.dropOffZones.getFacilities(), (zone) => {    
         //We get the distance in km, then we turn it into miles.
         //and finally we get two decimal format. e.g. 5.02
-        zone['distance'] = Math.floor((this.getDistanceFromLatLonInKm(pos.coords.latitude, pos.coords.longitude, zone.coordinates.latitude, zone.coordinates.longitude) * 0.62137) * 10) / 10;   
+        zone['distance'] = Math.floor((this.getDistanceFromLatLonInKm(pos.latitude, pos.longitude, zone.coordinates.latitude, zone.coordinates.longitude) * 0.62137) * 10) / 10;   
         return { 
           distance: zone.distance,
           address: zone.address,
@@ -55,13 +51,17 @@ export class LocationsCtrl {
       });      
     }
     
-    getCurrentCoords(){      
+    getCurrentCoords(gotCoordinates){      
+      if(gotCoordinates === true) {
+        this.checkDistanceFromZones(this.coordinates);
+        return;
+      }
       this.$ionicLoading.show({
-          template: 'Updating distance from facilities'
+          template: 'Getting distance of facilites'
       });      
       navigator.geolocation.getCurrentPosition((pos) => {
         this.$ionicLoading.hide();        
-        this.checkDistanceFromZones(pos);
+        this.checkDistanceFromZones(pos.coords);
         return pos;
       }, (err) => {
         console.error(err);

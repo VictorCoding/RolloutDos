@@ -102,6 +102,7 @@ export class HomeCtrl {
             console.log('fixing coords', pos)
         }
         this.coords = pos.coords;
+        this.GeoLocation.setCoordinates(pos.coords);
 
         var scheduler = this.SchedulerService(pos, 90);
         scheduler.whenLoaded.then(() => {

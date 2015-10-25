@@ -18,6 +18,7 @@ define("GeoLocation", ["exports"], function (exports) {
 
             this.$http = $http;
             this.$q = $q;
+            this.coordinates;
         }
 
         _createClass(GeoLocation, {
@@ -38,6 +39,16 @@ define("GeoLocation", ["exports"], function (exports) {
                     return this.$http.get("http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest?text=" + address + "&category=&location=-95.3632700,29.7632800&distance=10000&f=pjson").then(function (r) {
                         return r.data.suggestions;
                     });
+                }
+            },
+            getCoordinates: {
+                value: function getCoordinates(coords) {
+                    return this.coordinates || "No coordinates";
+                }
+            },
+            setCoordinates: {
+                value: function setCoordinates(coords) {
+                    this.coordinates = coords;
                 }
             }
         });
@@ -440,6 +451,7 @@ define("HomeCtrl", ["exports"], function (exports) {
                         console.log("fixing coords", pos);
                     }
                     this.coords = pos.coords;
+                    this.GeoLocation.setCoordinates(pos.coords);
 
                     var scheduler = this.SchedulerService(pos, 90);
                     scheduler.whenLoaded.then(function () {
@@ -544,9 +556,10 @@ define("LocationsCtrl", ["exports"], function (exports) {
   });
 
   var LocationsCtrl = exports.LocationsCtrl = (function () {
-    function LocationsCtrl($scope, dropOffZones, $ionicLoading) {
+    function LocationsCtrl($scope, dropOffZones, $ionicLoading, GeoLocation) {
       _classCallCheck(this, LocationsCtrl);
 
+      this.coordinates = GeoLocation.getCoordinates();
       this.dropOffZones = dropOffZones;
       this.$ionicLoading = $ionicLoading;
       this.zones = this.dropOffZones.getFacilities();
@@ -568,23 +581,15 @@ define("LocationsCtrl", ["exports"], function (exports) {
       }];
 
       this.mapType = this.types[0];
+
+      if (this.coordinates !== "No coordinates") {
+        this.getCurrentCoords(true);
+      } else {
+        this.getCurrentCoords(false);
+      }
     }
 
     _createClass(LocationsCtrl, {
-      updateMap: {
-        value: function updateMap(code) {
-          var _this = this;
-
-          console.log(this.mapType);
-          if (this.mapType.code === "all") {
-            this.zones = this.dropOffZones.getFacilities();
-          } else {
-            this.zones = _.filter(this.dropOffZones.getFacilities(), function (zone) {
-              return zone.type === _this.mapType.name;
-            });
-          }
-        }
-      },
       checkDistanceFromZones: {
         value: function checkDistanceFromZones(pos) {
           var _this = this;
@@ -592,7 +597,7 @@ define("LocationsCtrl", ["exports"], function (exports) {
           this.zones = _.map(this.dropOffZones.getFacilities(), function (zone) {
             //We get the distance in km, then we turn it into miles.
             //and finally we get two decimal format. e.g. 5.02
-            zone.distance = Math.floor(_this.getDistanceFromLatLonInKm(pos.coords.latitude, pos.coords.longitude, zone.coordinates.latitude, zone.coordinates.longitude) * 0.62137 * 10) / 10;
+            zone.distance = Math.floor(_this.getDistanceFromLatLonInKm(pos.latitude, pos.longitude, zone.coordinates.latitude, zone.coordinates.longitude) * 0.62137 * 10) / 10;
             return {
               distance: zone.distance,
               address: zone.address,
@@ -604,15 +609,19 @@ define("LocationsCtrl", ["exports"], function (exports) {
         }
       },
       getCurrentCoords: {
-        value: function getCurrentCoords() {
+        value: function getCurrentCoords(gotCoordinates) {
           var _this = this;
 
+          if (gotCoordinates === true) {
+            this.checkDistanceFromZones(this.coordinates);
+            return;
+          }
           this.$ionicLoading.show({
-            template: "Updating distance from facilities"
+            template: "Getting distance of facilites"
           });
           navigator.geolocation.getCurrentPosition(function (pos) {
             _this.$ionicLoading.hide();
-            _this.checkDistanceFromZones(pos);
+            _this.checkDistanceFromZones(pos.coords);
             return pos;
           }, function (err) {
             console.error(err);

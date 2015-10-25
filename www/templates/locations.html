@@ -3,23 +3,22 @@
         <img src="img/rollout_logo.png" style="margin-top:5px;" height="30" width="143">
     </ion-nav-title>
     <ion-nav-buttons side="secondary">
-        <button class="button button-icon icon ion-ios-location-outline" ng-click="l.getCurrentCoords()"></button>
+        <button class="button button-icon icon ion-ios-location-outline" ng-click="location.getCurrentCoords(false)"></button>
     </ion-nav-buttons>
     <ion-content scroll="false">
         <div><label class="item item-input item-select">
             <div class="input-label">
                 Type
             </div>
-            <select ng-model="l.mapType" 
-                    ng-options="item.name for item in l.types track by item.code"
-                    ng-change="l.updateMap(mapType.code)">
+            <select ng-model="location.mapType" 
+                    ng-options="item.name for item in location.types track by item.code">
             </select>
 
         </label>
         </div>
         <div class="map-container">
           <map center="29.754002, -95.373774" zoom="10" style="margin: 0 auto" disable-default-u-i="true">  
-            <marker ng-repeat="zone in l.zones" 
+            <marker ng-repeat="zone in location.zones" 
                     position="{{zone.coordinates.latitude}},{{zone.coordinates.longitude}}"
                     icon="{{( zone.name === 'CompuCycle' ? 'img/compucycle.png' : '' ) || (zone.type === 'Recycling Facility' ? 'img/environmentfacility.png' : 'img/neighborhoodfacility.png')}}"
                     on-click="app.clickedLocation()">
@@ -28,40 +27,40 @@
           
         </div>
         <div class="list" style="overflow: auto; height: 272px; overflow-x: hidden;">
-          <div ng-if="l.mapType.code === 'all' || l.mapType.code === 'one'">
+          <div ng-if="location.mapType.code === 'all' || location.mapType.code === 'one'">
             <div class="item item-divider item-balanced">
               Recycling Facilities
             </div>
-            <div class="item" href="#" ng-repeat="zone in l.zones track by $index" ng-if="zone.type === 'Recycling Facility'">
+            <div class="item" href="#" ng-repeat="zone in location.zones track by $index" ng-if="zone.type === 'Recycling Facility'">
               {{zone.name}}<br>
-              <small>{{zone.distance}}</small>
+              <small>{{zone.distance}} mi.</small>
             </div> 
           </div>     
-          <div ng-if="l.mapType.code === 'all' || l.mapType.code === 'two'"> 
+          <div ng-if="location.mapType.code === 'all' || location.mapType.code === 'two'"> 
             <div class="item item-divider item-balanced">
               Environmental Service Center              
             </div>
-            <div class="item" href="#" ng-repeat="zone in l.zones track by $index" ng-if="zone.type === 'Environmental Service Center'">
+            <div class="item" href="#" ng-repeat="zone in location.zones track by $index" ng-if="zone.type === 'Environmental Service Center'">
               {{zone.name}}<br>
-              <small>{{zone.distance}}</small>
+              <small>{{zone.distance}} mi.</small>
             </div>     
           </div>
-          <div ng-if="l.mapType.code === 'all' || l.mapType.code === 'three'">
+          <div ng-if="location.mapType.code === 'all' || location.mapType.code === 'three'">
             <div class="item item-divider item-balanced">
               Neighborhood Facility
             </div>
-            <div class="item" href="#" ng-repeat="zone in l.zones track by $index" ng-if="zone.type === 'Neighborhood Facility'">
+            <div class="item" href="#" ng-repeat="zone in location.zones track by $index" ng-if="zone.type === 'Neighborhood Facility'">
               {{zone.name}}<br>
-              <small>{{zone.distance}}</small>
+              <small>{{zone.distance}} mi.</small>
             </div>      
           </div>       
-          <div ng-if="l.mapType.code === 'all' || l.mapType.code === 'four'">
+          <div ng-if="location.mapType.code === 'all' || location.mapType.code === 'four'">
             <div class="item item-divider item-balanced">
               Non City-Owned Facilities
             </div>
-            <div class="item" href="#" ng-repeat="zone in l.zones track by $index" ng-if="zone.type === 'Non City-Owned Facilities'">
+            <div class="item" href="#" ng-repeat="zone in location.zones track by $index" ng-if="zone.type === 'Non City-Owned Facilities'">
               {{zone.name}}<br>
-              <small>{{zone.distance}}</small>
+              <small>{{zone.distance}} mi.</small>
             </div>
           </div>   
         </div>

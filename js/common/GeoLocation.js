@@ -5,6 +5,7 @@ export class GeoLocation {
     constructor($http, $q) {
         this.$http = $http;
         this.$q = $q;
+        this.coordinates;
     }
 
     lookupCoordinates(suggestion) {
@@ -20,5 +21,13 @@ export class GeoLocation {
         //http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest?text=oakdale&category=&location=-95.3632700,29.7632800&distance=10000&f=pjson
         return this.$http.get(`http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest?text=${address}&category=&location=-95.3632700,29.7632800&distance=10000&f=pjson`)
         .then((r)=> r.data.suggestions);
+    }
+    
+    getCoordinates(coords){
+        return this.coordinates || 'No coordinates';
+    }
+    
+    setCoordinates(coords){
+      this.coordinates = coords;
     }
 }
