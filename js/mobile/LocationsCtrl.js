@@ -60,7 +60,9 @@ export class LocationsCtrl {
           template: 'Getting distance of facilites'
       });      
       navigator.geolocation.getCurrentPosition((pos) => {
-        this.$ionicLoading.hide();        
+        this.$ionicLoading.hide();      
+        this.coordinates = pos.coords;
+        console.log('coords from nav', pos.coords);
         this.checkDistanceFromZones(pos.coords);
         return pos;
       }, (err) => {

@@ -18,6 +18,8 @@
         </div>
         <div class="map-container">
           <map center="29.754002, -95.373774" zoom="10" style="margin: 0 auto" disable-default-u-i="true">  
+            <marker position="{{location.coordinates.latitude}}, {{location.coordinates.longitude}}">
+            </marker>
             <marker ng-repeat="zone in location.zones" 
                     position="{{zone.coordinates.latitude}},{{zone.coordinates.longitude}}"
                     icon="{{( zone.name === 'CompuCycle' ? 'img/compucycle.png' : '' ) || (zone.type === 'Recycling Facility' ? 'img/environmentfacility.png' : 'img/neighborhoodfacility.png')}}"
