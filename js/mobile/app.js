@@ -10,7 +10,7 @@ import {GeoLocation} from 'GeoLocation'
 import {dropOffZones} from 'dropOffZones';
 
 angular.module('starter', ['ionic', 'ionic.service.core',
-    'starter.controllers', 'starter.services', 'ngMap'])
+    'starter.controllers', 'starter.services', 'ngMap', 'pascalprecht.translate'])
     /*
     //need to add 'ionic.service.deploy' back on
     .config(['$ionicAppProvider', function($ionicAppProvider) {
@@ -23,8 +23,13 @@ angular.module('starter', ['ionic', 'ionic.service.core',
         });
     }])*/
     .config(router)
-    .config(($ionicFilterBarConfigProvider) => {
+    .config(($ionicFilterBarConfigProvider, $translateProvider) => {
         $ionicFilterBarConfigProvider.placeholder('Your Address');
+        $translateProvider.useStaticFilesLoader({
+          prefix: 'i18n/',
+          suffix: '.json'
+        });
+        $translateProvider.preferredLanguage('es_MX');
     })
     .run(onReady);
 

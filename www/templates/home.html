@@ -61,10 +61,10 @@
     </ion-content>
     <ion-footer-bar class="bar bar-footer action-buttons" ng-hide="home.events.length == 0">
         <div class="reminders" ui-sref="remindme({latitude:home.coords.latitude, longitude:home.coords.longitude})">
-            <i class="ion-ios-bell"></i>Remind Me
+            <i class="ion-ios-bell"></i>{{'Remind_Me' | translate}}
         </div>
         <div class="drop-off" ui-sref="locations">
-            <i class="ion-map"></i> Drop-off Locations
+            <i class="ion-map"></i> {{'Drop_Off_Locations' | translate}}
         </div>
     </ion-footer-bar>
 

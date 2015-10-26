@@ -17,7 +17,9 @@
     "ionic": "~1.0.1",
     "ngmap": "~1.13.13",
     "ionic-filter-bar": "~1.1.1",
-    "ngCordova": "~0.1.20-alpha"
+    "ngCordova": "~0.1.20-alpha",
+    "angular-translate": "~2.8.1",
+    "angular-translate-loader-static-files": "~2.8.1"
   },
   "resolutions": {
     "angular": "1.4.2"

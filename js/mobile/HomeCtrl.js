@@ -13,7 +13,7 @@ export class HomeCtrl {
         return moment().day(day).format("dddd");
     }
 
-    constructor($scope, $ionicPlatform, $ionicLoading, alert, $ionicFilterBar, $timeout, GeoLocation, SchedulerService, localStorageService) {
+    constructor($scope, $ionicPlatform, $ionicLoading, alert, $ionicFilterBar, $timeout, GeoLocation, SchedulerService, localStorageService, $translate) {
         angular.extend(this, {
             $scope,
             $ionicPlatform,
@@ -22,7 +22,8 @@ export class HomeCtrl {
             alert,
             $ionicFilterBar,
             $timeout,
-            GeoLocation
+            GeoLocation,
+            $translate
         });
         ionic.Platform.ready(this.checkForUpdates.bind(this));
         this.$scope.moment = moment;
@@ -68,7 +69,7 @@ export class HomeCtrl {
 
     showFilterBar() {
         this.filterBarInstance = this.$ionicFilterBar.show({
-            placeholder: 'Your Address',
+            placeholder: this.$translate.instant('Your_Address'),
             debounce: true,
             items: [],
             cancel: () => this.addresses = null,
@@ -80,7 +81,8 @@ export class HomeCtrl {
                 this.GeoLocation.lookupAddress(str).then((results) => {
                     this.addresses = results;
                 });
-            }
+            },
+            cancelText: this.$translate.instant('Cancel')
         });
     }
 
@@ -113,19 +115,18 @@ export class HomeCtrl {
         }).catch(()=> {
             console.error(arguments);
             this.$ionicLoading.hide();
-            this.alert('Unable to Find Your Schedule. ' +
-                'Make Sure You Are Connected to the Internet, and are in Houston');
+            this.alert(this.$translate.instant('Unable_To_Find_Your_Schedule_Make_Sure_Youre_Connected_To_Internet_And_In_Houston'));
         });
     }
 
     loadEvents() {
         this.$ionicLoading.show({
-            template: 'Finding Your Location'
+            template: this.$translate('Finding_Your_Location')
         });
 
         ionic.Platform.ready(() => {
             this.$ionicLoading.show({
-                template: 'Looking Up Your Schedule'
+                template: this.$translate.instant('Looking_Up_Your_Schedule')
             });
             navigator.geolocation.getCurrentPosition((pos) => {
                 this.loadEventsForPosition(pos);
@@ -135,5 +136,11 @@ export class HomeCtrl {
                 this.showFilterBar();
             });
         });
+    }
+    
+    changeLanguage(locale) {
+      $translate.use(locale).then(function() {
+						$translate.refresh();
+			});
     }
 }
