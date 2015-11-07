@@ -24,6 +24,7 @@ angular.module('starter', ['ionic', 'ionic.service.core',
     }])*/
     .config(router)
     .config(($ionicFilterBarConfigProvider, $translateProvider) => {
+      //TODO: figure out how to localize this
         $ionicFilterBarConfigProvider.placeholder('Your Address');
         $translateProvider.useStaticFilesLoader({
           prefix: 'i18n/',
