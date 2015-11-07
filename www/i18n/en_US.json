@@ -6,5 +6,17 @@
   "Cancel": "Cancel",
   "Unable_To_Find_Your_Schedule_Make_Sure_Youre_Connected_To_Internet_And_In_Houston": "Unable to Find Your Schedule. Make Sure You Are Connected to the Internet, and are in Houston",
   "Looking_Up_Your_Schedule": "Looking Up Your Schedule",
-  "Finding_Your_Location": "Finding Your Location"
+  "Finding_Your_Location": "Finding Your Location",
+  "Today": "Today",
+  "Tomorrow": "Tomorrow",
+  "Rollout_Is_Only_Available_For_Houston_Try_Again_When_You_Are_In_The_City_Or_In_An_Area_With_Trash_Pickup": "Rollout! is only available for Houston. Try again when you are in the city or in an area with trash pickup!",
+  "Click_The_Locations_Icon_To_Change_Your_Location": "Click the <i class=\"icon ion-ios-location-outline\"></i> to Change Your Location",
+  "Trash_And_Lawn": "Trash &amp; Lawn",
+  "Every": "Every",
+  "Every_Other": "Every other",
+  "Recycling": "Recycling",
+  "Junk": "Junk",
+  "Even_Months": "Even Months",
+  "Odd_Months": "Odd Months",
+  "Tree_Waste": "Tree Waste"
 }

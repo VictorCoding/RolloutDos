@@ -1,9 +1,9 @@
 export class HomeCtrl {
-    static dateFilter(day) {
+    static dateFilter($translate, day) {
         if (moment().isSame(day, 'day')) {
-            return 'Today ' + day.format('MMM Do');
+            return $translate.instant('Today') + ' ' + day.format('MMM Do');
         } else if (moment().add(1, 'days').isSame(day, 'day')) {
-            return 'Tomorrow ' + day.format('MMM Do');
+            return $translate.instant('Tomorrow') + ' ' + day.format('MMM Do');
         } else {
             return day.format('dddd MMM Do');
         }
@@ -31,6 +31,8 @@ export class HomeCtrl {
             console.log('heard filter', arguments);
         };
         this.loadEvents();
+        //TODO This needs to be set dynamically or updated        
+        moment.locale('en');
     }
 
     checkForUpdates() {
@@ -68,8 +70,7 @@ export class HomeCtrl {
     }
 
     showFilterBar() {
-        this.filterBarInstance = this.$ionicFilterBar.show({
-            placeholder: this.$translate.instant('Your_Address'),
+        this.filterBarInstance = this.$ionicFilterBar.show({            
             debounce: true,
             items: [],
             cancel: () => this.addresses = null,

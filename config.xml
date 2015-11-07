@@ -7,7 +7,7 @@
   <author email="kentongray@gmail.com" href="http://kentonue.com/">
       Kenton Gray
     </author>
-  <content src="http://192.168.1.64:8100" original-src="index.html"/>
+  <content src="index.html"/>
   <access origin="*"/>
   <allow-navigation href="*"/>
   <preference name="BackgroundColor" value="0x3bbb68"/>

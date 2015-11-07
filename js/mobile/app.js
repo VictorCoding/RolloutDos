@@ -29,7 +29,8 @@ angular.module('starter', ['ionic', 'ionic.service.core',
           prefix: 'i18n/',
           suffix: '.json'
         });
-        $translateProvider.preferredLanguage('es_MX');
+        //TODO: Needs to be set dynamically
+        $translateProvider.preferredLanguage('es_US');
     })
     .run(onReady);
 
@@ -37,7 +38,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'jett.ionic.filter.
     .controller('LocationsCtrl', LocationsCtrl)
     .controller('HomeCtrl', HomeCtrl)
     .controller('RemindMeCtrl', RemindMeCtrl)
-    .filter('date', () => HomeCtrl.dateFilter)
+    .filter('date', ($translate) => (str) => HomeCtrl.dateFilter($translate, str))
     .filter('dayOfWeek', () => HomeCtrl.dayOfWeek);
 
 angular.module('starter.services', [])

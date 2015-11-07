@@ -6,5 +6,17 @@
   "Cancel": "Cancelar",
   "Unable_To_Find_Your_Schedule_Make_Sure_Youre_Connected_To_Internet_And_In_Houston": "No se pudo encontrar su calendario. Asegurese que este conectado a la red y que este en Houston",
   "Looking_Up_Your_Schedule": "Buscando su calendario",
-  "Finding_Your_Location": "Buscando su ubicacion"
+  "Finding_Your_Location": "Buscando su ubicacion",
+  "Today": "Hoy",
+  "Tomorrow": "Ma\u00F1ana",
+  "Rollout_Is_Only_Available_For_Houston_Try_Again_When_You_Are_In_The_City_Or_In_An_Area_With_Trash_Pickup": "Rollout! es disponible en Houston solamente. Vuelve a intentar cuando estes en la ciudad o en otra area participante.",
+  "Click_The_Locations_Icon_To_Change_Your_Location": "Haz clic <i class=\"icon ion-ios-location-outline\"></i> para cambiar to ubicacion",  
+  "Trash_And_Lawn": "Basura &amp; C\u00E9sped",
+  "Every": "Cada",
+  "Every_Other": "Cada otro",
+  "Recycling": "Reciclaje",
+  "Junk": "Junk",
+  "Even_Months": "Meses Par",
+  "Odd_Months": "Meses Impares",
+  "Tree_Waste": "Residuo de \u00C1rboles"
 }
