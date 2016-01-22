@@ -1,6 +1,6 @@
 export class RemindMeCtrl {
     constructor($scope, $ionicHistory, $ionicLoading, $ionicPlatform, $ionicPopover,
-                localStorageService, SchedulerService, alert, $stateParams) {
+                localStorageService, SchedulerService, alert, $stateParams, $translate) {
         angular.extend(this, {
             $scope,
             $ionicHistory,
@@ -10,7 +10,8 @@ export class RemindMeCtrl {
             localStorageService,
             SchedulerService,
             alert,
-            $stateParams
+            $stateParams,
+            $translate
         });
         this.notificationsEnabled = localStorageService.get('notificationsEnabled') == 'true';
         this.timeOfDay = 'morning';
@@ -29,11 +30,11 @@ export class RemindMeCtrl {
         });
 
         var timeOfDayTemplate = `<ion-popover-view ><ul class="list">
-            <li class="item" ng-click="remind.setTimeOfDay('morning')">
-            Morning
+            <li class="item" ng-click="remind.setTimeOfDay('morning')"
+                             translate="Morning">
             </li>
-            <li class="item" ng-click="remind.setTimeOfDay('night')">
-            Night
+            <li class="item" ng-click="remind.setTimeOfDay('night')"
+                             translate="Night">
             </li>
         </ul></ion-popover-view>`;
 
@@ -59,10 +60,10 @@ export class RemindMeCtrl {
         </ul></ion-popover-view>`;
 
         var whatTemplate = `<ion-popover-view>
-           <ion-toggle ng-model="remind.recycling" toggle-class="toggle-calm">Recycling</ion-toggle>
-           <ion-toggle ng-model="remind.waste" toggle-class="toggle-calm">Trash & Yard</ion-toggle>
-           <ion-toggle ng-model="remind.junk" toggle-class="toggle-calm">Junk</ion-toggle>
-           <ion-toggle ng-model="remind.tree" toggle-class="toggle-calm">Tree Trash</ion-toggle>
+           <ion-toggle ng-model="remind.recycling" toggle-class="toggle-calm">{{'Recycling' | translate}}</ion-toggle>
+           <ion-toggle ng-model="remind.waste" toggle-class="toggle-calm">{{'Trash_And_Lawn' | translate}}</ion-toggle>
+           <ion-toggle ng-model="remind.junk" toggle-class="toggle-calm">{{'Junk' | translate}}</ion-toggle>
+           <ion-toggle ng-model="remind.tree" toggle-class="toggle-calm">{{'Tree_Waste' | translate}}</ion-toggle>
         </ion-popover-view>`;
 
         this.timeOfDayPopOver = $ionicPopover.fromTemplate(timeOfDayTemplate, {
@@ -125,7 +126,7 @@ export class RemindMeCtrl {
                         if (matches.length) {
                             return {
                                 id: date.getTime(),
-                                text: "Don't forget to rollout your " + this.makeDescriptionText(matches),
+                                text: this.$translate.instant('Dont_Forget_To_Rollout_Your') + ' ' + this.makeDescriptionText(matches),
                                 at: date.getTime()
                             };
                         }
@@ -139,13 +140,12 @@ export class RemindMeCtrl {
                 }).catch(()=> {
                     console.log(arguments);
                     this.$ionicLoading.hide();
-                    this.alert('Unable to Find Your Schedule. ' +
-                        'Make Sure You Are Connected to the Internet');
+                    this.alert(this.$translate.instant('Unable_To_Find_Your_Schedule'));
                 });
             });
         }), this);
         this.$ionicLoading.show({
-            template: 'Creating Your Reminders'
+            template: this.$translate.instant('Creating_Your_Reminders'),
         });
 
     }
@@ -153,7 +153,7 @@ export class RemindMeCtrl {
     makeDescriptionText(categories) {
         //FIXME: lazy hack because i want it to say trash instead of waste on the reminder but don't want to rewrite all the reminder code
         categories = categories.map(c => c == 'waste' ? 'trash' : c);
-        var description = "nothing";
+        var description = this.$translate.instant('nothing');
         if (categories.length == 1)
             description = categories[0];
         else if (categories.length == 2)

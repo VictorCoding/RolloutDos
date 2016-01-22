@@ -32,14 +32,14 @@ angular.module('starter', ['ionic', 'ionic.service.core',
         });
         
         // TODO: Needs to be set dynamically
-        $translateProvider.preferredLanguage('en_US');
-        moment.locale('en'); 
-        Set sanitazion config
+        $translateProvider.preferredLanguage('es_MX');
+        moment.locale('es'); 
+        //Set sanitazion config
         $translateProvider.useSanitizeValueStrategy(null);
     })
     .run(onReady);
 
-angular.module('starter.controllers', ['LocalStorageModule', 'jett.ionic.filter.bar', 'starter.services'])
+angular.module('starter.controllers', ['LocalStorageModule', 'jett.ionic.filter.bar', 'starter.services', 'pascalprecht.translate'])
     .controller('LocationsCtrl', LocationsCtrl)
     .controller('HomeCtrl', HomeCtrl)
     .controller('RemindMeCtrl', RemindMeCtrl)

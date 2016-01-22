@@ -11,7 +11,7 @@
   "Tomorrow": "Ma\u00F1ana",
   "Rollout_Is_Only_Available_For_Houston_Try_Again_When_You_Are_In_The_City_Or_In_An_Area_With_Trash_Pickup": "Rollout! es disponible en Houston solamente. Vuelve a intentar cuando estes en la ciudad o en otra area participante.",
   "Click_The_Locations_Icon_To_Change_Your_Location": "Haz clic <i class=\"icon ion-ios-location-outline\"></i> para cambiar to ubicacion",  
-  "Trash_And_Lawn": "Basura &amp; C\u00E9sped",
+  "Trash_And_Lawn": "Basura & C\u00E9sped",
   "Every": "Cada",
   "Every_Other": "Cada otro",
   "Recycling": "Reciclaje",
@@ -25,5 +25,18 @@
   "thursday": "Jueves",
   "friday": "Viernes",
   "saturday": "S\u00e1bado",
-  "sunday": "Domingo"
+  "sunday": "Domingo",
+  "in_the_morning": "en la ma\u00f1ana",
+  "at_night": "en la noche",
+  "Morning": "Ma\u00f1ana",
+  "Night": "Noche",
+  "at": "a las",
+  "to": "para",
+  "my": "mi",
+  "Cancel_Notifications": "Cancelar Notificaciones",
+  "Creating_Your_Reminders": "Creando Sus Recordatorios",
+  "Unable_To_Find_Your_Schedule": "No se pudo encontrar su horario. Aseg\u00farese de que este conectado(a) al internet.",
+  "Dont_Forget_To_Rollout_Your": "No se olvide de sacar su",
+  "recycling_and_trash": "reciclaje y basura",
+  "nothing": "nada"
 }

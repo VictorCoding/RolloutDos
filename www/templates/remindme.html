@@ -5,19 +5,21 @@
     <ion-content class="padding remind-me">
 
 
-        <h2>Remind me <u ng-click="remind.timeOfDayPopOver.show($event)" ng-bind="remind.timeOfDay == 'morning' ? 'in the morning' : 'at night'">in the morning</u></h2>
+        <h2>{{'Remind_Me' | translate}} <u ng-click="remind.timeOfDayPopOver.show($event)" ng-bind="remind.timeOfDay == 'morning' ? ('in_the_morning' | translate) : ('at_night' | translate)"></u></h2>
 
-        <h1>at <u ng-click="remind.hourPopOver.show($event)" ng-bind="remind.hour">6</u></h1>
+        <h1>{{'at' | translate}} <u ng-click="remind.hourPopOver.show($event)" ng-bind="remind.hour">6</u></h1>
 
-        <h2>to <em>roll out</em> my</h2>
+        <h2>{{'to' | translate}} <em>roll out</em> {{'my' | translate}}</h2>
 
-        <h2><u ng-click="remind.whatPopOver.show($event)" ng-bind="remind.whatDescription">recycling and trash</u></h2>
+        <h2><u ng-click="remind.whatPopOver.show($event)" ng-bind="remind.whatDescription">{{'recycling_and_trash' | translate}}</u></h2>
 
     </ion-content>
 
     <ion-footer-bar class="remind-me-action bar bar-footer">
-        <div ng-if="notifications" class="button-assertive buttons-assertive"  ng-click="remind.cancelReminders()">
-            Cancel Notifications
+        <div ng-if="notifications" 
+             class="button-assertive buttons-assertive"  
+             ng-click="remind.cancelReminders()"
+             translate="Cancel_Notifications">
         </div>
         <div class="buttons" ng-click="remind.setupReminders()">
             Let's Roll!

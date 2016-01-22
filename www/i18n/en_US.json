@@ -11,7 +11,7 @@
   "Tomorrow": "Tomorrow",
   "Rollout_Is_Only_Available_For_Houston_Try_Again_When_You_Are_In_The_City_Or_In_An_Area_With_Trash_Pickup": "Rollout! is only available for Houston. Try again when you are in the city or in an area with trash pickup!",
   "Click_The_Locations_Icon_To_Change_Your_Location": "Click the <i class=\"icon ion-ios-location-outline\"></i> to Change Your Location",
-  "Trash_And_Lawn": "Trash &amp; Lawn",
+  "Trash_And_Lawn": "Trash & Lawn",
   "Every": "Every",
   "Every_Other": "Every other",
   "Recycling": "Recycling",
@@ -25,5 +25,18 @@
   "thursday": "Thursday",
   "friday": "Friday",
   "saturday": "Saturday",
-  "sunday": "Sunday"
+  "sunday": "Sunday",
+  "in_the_morning": "in the morning",
+  "at_night": "at night",
+  "Morning": "Morning",
+  "Night": "Night",
+  "at": "at",
+  "to": "to",
+  "my": "my",
+  "Cancel_Notifications": "Cancel Notifications",
+  "Creating_Your_Reminders": "Creating Your Reminders",
+  "Unable_To_Find_Your_Schedule": "Unable to Find Your Schedule. Make Sure You Are Connected to the Internet",
+  "Dont_Forget_To_Rollout_Your": "Don't forget to rollout your",
+  "recycling_and_trash": "recycling and trash",
+  "nothing": "nothing"
 }
