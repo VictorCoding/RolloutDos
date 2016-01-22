@@ -18,5 +18,12 @@
   "Junk": "Junk",
   "Even_Months": "Meses Par",
   "Odd_Months": "Meses Impares",
-  "Tree_Waste": "Residuo de \u00C1rboles"
+  "Tree_Waste": "Residuo de \u00C1rboles",
+  "monday": "Lunes",
+  "tuesday": "Martes",
+  "wednesday": "Mi\u00e9rcoles",
+  "thursday": "Jueves",
+  "friday": "Viernes",
+  "saturday": "S\u00e1bado",
+  "sunday": "Domingo"
 }

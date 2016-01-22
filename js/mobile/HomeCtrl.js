@@ -32,7 +32,7 @@ export class HomeCtrl {
         };
         this.loadEvents();
         //TODO This needs to be set dynamically or updated        
-        moment.locale('en');
+        // moment.locale('en');
     }
 
     checkForUpdates() {

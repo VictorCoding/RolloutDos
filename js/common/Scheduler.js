@@ -13,10 +13,11 @@
 
  **/
 export class Scheduler {
-    constructor($http, $q, pos, numberOfDays = 60) {
+    constructor($http, $q, pos, numberOfDays = 60, $translate) {
 
         this.numberOfDays = numberOfDays;
         this.pickupDays = {};
+        this.$translate = $translate;
 
         if(pos.coords) {
             this.pos = {y: pos.coords.latitude, x: pos.coords.longitude, spatialReference: {"wkid": 4326}};
@@ -50,7 +51,8 @@ export class Scheduler {
         //waste is one day a week
         var wasteDay = -1;
         if (this.isValidData(wasteData)) {
-            wasteDay = Scheduler.getDayIndex(wasteData.features[0].attributes.DAY);
+            let localizedDay = this.$translate.instant(wasteData.features[0].attributes.DAY.toLowerCase())
+            wasteDay = Scheduler.getDayIndex(localizedDay);
         }
 
         //heavy trash pickup is in the form of #rd WEEKDAY
@@ -59,7 +61,8 @@ export class Scheduler {
         if (this.isValidData(junkData)) {
             var junkPattern = junkData.features[0].attributes.SERVICE_DA;
             junkWeekOfMonth = junkPattern.substr(0, 1);
-            junkDay = Scheduler.getDayIndex(junkPattern.substr(junkPattern.indexOf(' ')));
+            let localizedDay = this.$translate.instant(junkPattern.substr(junkPattern.indexOf(' ')).toLowerCase())
+            junkDay = Scheduler.getDayIndex(localizedDay);
         }
 
         //recycling pickup is alternating weeks
@@ -67,7 +70,8 @@ export class Scheduler {
         var recyclingScheduleA = false;
         if (this.isValidData(recyclingData)) {
             var recyclingSchedule = recyclingData.features[0].attributes.SERVICE_DAY;
-            recyclingDay = Scheduler.getDayIndex(recyclingSchedule.split('-')[0]);
+            let localizedDay = this.$translate.instant(recyclingSchedule.split('-')[0].toLowerCase())
+            recyclingDay = Scheduler.getDayIndex(localizedDay);
             //if true it is the "first week", if false it is the second week
             recyclingScheduleA = recyclingSchedule.includes('-A');
         }
@@ -139,7 +143,7 @@ export class Scheduler {
         return moment(dayStr, "dddd").day()
     }
 
-    static service($http, $q) {
-        return (pos, numberOfDays) => new Scheduler($http, $q, pos, numberOfDays)
+    static service($http, $q, $translate) {
+        return (pos, numberOfDays) => new Scheduler($http, $q, pos, numberOfDays, $translate)
     }
 }

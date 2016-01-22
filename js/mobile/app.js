@@ -24,14 +24,18 @@ angular.module('starter', ['ionic', 'ionic.service.core',
     }])*/
     .config(router)
     .config(($ionicFilterBarConfigProvider, $translateProvider) => {
-      //TODO: figure out how to localize this
+        // TODO: figure out how to localize this
         $ionicFilterBarConfigProvider.placeholder('Your Address');
         $translateProvider.useStaticFilesLoader({
           prefix: 'i18n/',
           suffix: '.json'
         });
-        //TODO: Needs to be set dynamically
-        $translateProvider.preferredLanguage('es_US');
+        
+        // TODO: Needs to be set dynamically
+        $translateProvider.preferredLanguage('en_US');
+        moment.locale('en'); 
+        Set sanitazion config
+        $translateProvider.useSanitizeValueStrategy(null);
     })
     .run(onReady);
 
@@ -42,7 +46,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'jett.ionic.filter.
     .filter('date', ($translate) => (str) => HomeCtrl.dateFilter($translate, str))
     .filter('dayOfWeek', () => HomeCtrl.dayOfWeek);
 
-angular.module('starter.services', [])
+angular.module('starter.services', ['pascalprecht.translate'])
     .service('GeoLocation', GeoLocation)
     .service('SchedulerService', Scheduler.service)
     .service('alert', () => (str)=>navigator.notification && navigator.notification.alert ? navigator.notification.alert(str) : window.alert(str))

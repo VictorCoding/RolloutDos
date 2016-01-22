@@ -18,5 +18,12 @@
   "Junk": "Junk",
   "Even_Months": "Even Months",
   "Odd_Months": "Odd Months",
-  "Tree_Waste": "Tree Waste"
+  "Tree_Waste": "Tree Waste",
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "saturday": "Saturday",
+  "sunday": "Sunday"
 }
