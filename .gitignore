@@ -24,6 +24,6 @@ seed.txt
 map.txt
 dist/
 
-
-www/lib
+#ignore output folder
 www/js
+www/lib
